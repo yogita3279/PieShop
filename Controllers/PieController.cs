@@ -18,8 +18,7 @@ namespace PieShop.Controllers
             _pieRepository = pieRepository;
             _categoryRepository = categoryRepository;
         }
-
-
+   
         public ViewResult List() 
         {
             PiesListViewModel piesListViewModel = new PiesListViewModel();
@@ -27,6 +26,8 @@ namespace PieShop.Controllers
             piesListViewModel.CurrentCategory = "Cheese cakes";
             return View(piesListViewModel);
         }
+
+        
 
     }
 }
