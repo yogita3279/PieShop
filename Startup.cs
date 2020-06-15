@@ -26,7 +26,7 @@ namespace PieShop
         public void ConfigureServices(IServiceCollection services)
         {   // add services to configure EF core
             services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+               options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PieShopBakery;"));
 
 
             //services.AddScoped<IpieRepository, MockPieRepository>();
@@ -38,7 +38,7 @@ namespace PieShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext appDbContext)
         {
             if (env.IsDevelopment())
             {
@@ -48,6 +48,7 @@ namespace PieShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            appDbContext.Database.EnsureCreated();
 
             app.UseEndpoints(endpoints =>
             {

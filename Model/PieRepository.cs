@@ -11,7 +11,7 @@ namespace PieShop.Model
         private readonly AppDbContext _appDbContext;
 
         //constructor injection we can access appDbContext
-        public PieRepository(AppDbContext appDbContext)
+        public PieRepository(AppDbContext appDbContext) // work with dbcontext
         {
             _appDbContext = appDbContext;
         }
