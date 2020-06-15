@@ -33,6 +33,9 @@ namespace PieShop
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<IpieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddHttpContextAccessor();
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -48,6 +51,7 @@ namespace PieShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseSession();
             appDbContext.Database.EnsureCreated();
 
             app.UseEndpoints(endpoints =>
