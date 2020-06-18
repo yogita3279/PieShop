@@ -15,6 +15,7 @@ namespace PieShop
 {
     public class Startup
     {
+        //added some code
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
